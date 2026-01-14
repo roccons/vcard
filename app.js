@@ -77,4 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => console.error('Error fetching vCard:', error));
+
+    new QRCode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 128,
+        height: 128,
+        colorDark : "#225473",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
 });
