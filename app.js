@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    function formatPhoneNumber(phone) {
+        const cleaned = ('' + phone).replace(/\D/g, '');
+        const match = cleaned.match(/^52(\d{2})(\d{4})(\d{4})$/);
+        if (match) {
+            return `+52 ${match[1]} ${match[2]} ${match[3]}`;
+        }
+        return phone; // Return original if it doesn't match the expected format
+    }
+
     function parseVCard(vcardData) {
         const card = {};
         const lines = vcardData.split(/\r\n|\n/);
@@ -51,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const phoneLink = document.getElementById('contact-phone');
                 if (phoneLink && card.tel) {
                     phoneLink.href = 'tel:' + card.tel.replace(/\D/g, '');
-                    phoneLink.querySelector('span:last-child').textContent = card.tel;
+                    phoneLink.querySelector('span:last-child').textContent = formatPhoneNumber(card.tel);
                 }
 
                 const emailLink = document.getElementById('contact-email');
