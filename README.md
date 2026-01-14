@@ -10,6 +10,7 @@ Para adaptar esta tarjeta para otra persona o actualizar la información, sigue 
 
 -   **Archivo:** `contacto.vcf`
 -   **Acción:** Edita este archivo con un editor de texto. Modifica los campos `FN` (Nombre completo), `TITLE` (Puesto), `TEL` (Teléfono), `EMAIL` (Correo) y `URL` (Sitio web) con la nueva información.
+-   **Nota:** Los saltos de línea de `contacto.vcf` deben ser CRLF y hay que cuidar que el número de teléfono tenga el formato "+52" seguido de 10 dígitos, de lo contrario se corrompe el parseo y la foto deja de mostrarse en el cel.
 
 ### 2. Cambiar las Imágenes
 
