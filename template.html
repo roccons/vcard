@@ -7,18 +7,18 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://arloga.com.mx/">
-    <meta property="og:title" content="Mtro. Miguel Zimi Chvez Loeza - Director General">
+    <meta property="og:title" content="{{NOMBRE_COMPLETO}} - {{TITULO}}">
     <meta property="og:description" content="Tarjeta de presentación digital de Arloga.">
     <meta property="og:image" content="foto.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://arloga.com.mx/">
-    <meta property="twitter:title" content="Mtro. Miguel Zimi Chvez Loeza - Director General">
+    <meta property="twitter:title" content="{{NOMBRE_COMPLETO}} - {{TITULO}}">
     <meta property="twitter:description" content="Tarjeta de presentación digital de Arloga.">
     <meta property="twitter:image" content="foto.webp">
     
-    <title>Tarjeta Digital - Mtro. Miguel Zimi Chvez Loeza</title>
+    <title>Tarjeta Digital - {{NOMBRE_COMPLETO}}</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -227,23 +227,23 @@
         </div>
 
         <div class="info-section">
-            <h1>Mtro. Miguel Zimi Chvez Loeza</h1>
-            <h2>Director General</h2>
+            <h1>{{NOMBRE_COMPLETO}}</h1>
+            <h2>{{TITULO}}</h2>
 
             <div class="contact-links">
-                <a href="tel:+525528952896" class="contact-item">
+                <a href="tel:{{TELEFONO_RAW}}" class="contact-item">
                     <span class="icon"></span>
-                    <span>+52 55 2895 2896</span>
+                    <span>{{TELEFONO_FORMATTED}}</span>
                 </a>
 
-                <a href="mailto:miguel.chavez@arloga.com.mx" class="contact-item">
+                <a href="mailto:{{EMAIL}}" class="contact-item">
                     <span class="icon"></span>
-                    <span>miguel.chavez@arloga.com.mx</span>
+                    <span>{{EMAIL}}</span>
                 </a>
 
-                <a href="https://arloga.com.mx" target="_blank" class="contact-item">
+                <a href="{{URL}}" target="_blank" class="contact-item">
                     <span class="icon"></span>
-                    <span>arloga.com.mx</span>
+                    <span>{{URL_DISPLAY}}</span>
                 </a>
             </div>
 

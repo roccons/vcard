@@ -1,30 +1,33 @@
 # Tarjeta de Presentación Digital
 
-Este proyecto es una tarjeta de presentación digital simple y auto-contenida. Está diseñada para ser fácilmente personalizable y no requiere dependencias complejas.
+Este proyecto es una tarjeta de presentación digital simple y auto-contenida. Está diseñada para ser fácilmente personalizable y se actualiza automáticamente a través de un script.
 
-## Cómo crear una nueva tarjeta o actualizar los datos
+## Cómo actualizar los datos
 
 Para adaptar esta tarjeta para otra persona o actualizar la información, sigue estos pasos:
 
 ### 1. Actualizar la Información de Contacto
 
--   **Archivo:** `contacto.vcf`
--   **Acción:** Edita este archivo con un editor de texto. Modifica los campos `FN` (Nombre completo), `TITLE` (Puesto), `TEL` (Teléfono), `EMAIL` (Correo) y `URL` (Sitio web) con la nueva información.
--   **Nota:** Los saltos de línea de `contacto.vcf` deben ser CRLF y hay que cuidar que el número de teléfono tenga el formato "+52" seguido de 10 dígitos, de lo contrario se corrompe el parseo y la foto deja de mostrarse en el cel.
+-   **Archivo:** `datos.json`
+-   **Acción:** Edita este archivo con un editor de texto. Modifica los campos con la nueva información. El formato del teléfono puede incluir espacios para una mejor visualización y debe contener exactamente 10 dígitos más el código de país (ej. `+52 55 1234 5678`); el script se encargará de formatearlo correctamente.
 
 ### 2. Cambiar las Imágenes
 
--   **Foto de perfil:** Reemplaza el archivo `foto.jpg` con la nueva imagen y codifícala en base64 para incluirla dentro del archivo `contacto.vcf`. Crea también una versión `foto.webp`que es la que se cargará dentro del html.
--   **Logo y Favicon:** En caso de rebranding reemplazar también los archivos `logo.webp` y `favicon.png`.
+-   **Foto de perfil:** Reemplaza el archivo `foto.jpg` con la nueva imagen, así como una versión en webp que se usará en el html. El script codificará la versión jpg para el vCard automáticamente.
+-   **Logo y Favicon:** Si es necesario, reemplaza los archivos `logo.webp` y `favicon.png`.
 
-### 3. Actualizar el title y la Vista Previa para Redes Sociales
+### 3. Generar los Archivos
 
-Para que el enlace compartido en WhatsApp y otras redes sociales muestre la información correcta, necesitas actualizar las metaetiquetas en el archivo `index.html`.
+Una vez que hayas actualizado `datos.json` y las imágenes, simplemente ejecuta el siguiente comando en tu terminal:
 
--   **Archivo:** `index.html`
--   **Acción:** Dentro de la etiqueta `<head>`, busca la etiqueta `<title>` y actualiza su contenido con el nuevo nombre.
--   **Acción:** Dentro de la etiqueta `<head>`, busca las etiquetas `meta` con las propiedades `og:title`, `og:description`, y `og:image`.
-    -   Actualiza `content` en `og:title` y `og:description` con el nuevo nombre, puesto y descripción.
-    -   Asegúrate de que la ruta en `og:image` apunte a la imagen de perfil correcta (ej. `foto.jpg`).
+```bash
+./generar_vcard.sh
+```
 
-Una vez completados estos pasos, la tarjeta de presentación estará actualizada con la nueva información.
+Este script se encargará de:
+-   Crear el archivo `contacto.vcf` con la información y la foto codificada.
+-   Generar el archivo `index.html` con todos los datos actualizados, incluyendo los necesarios para la vista previa en redes sociales.
+
+### Requisitos
+
+-   **jq:** Asegúrate de tener `jq` instalado, ya que el script lo necesita para leer el archivo `datos.json`. Puedes instalarlo en la mayoría de los sistemas con `sudo apt-get install jq` o `brew install jq`.

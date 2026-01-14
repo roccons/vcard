@@ -36,7 +36,8 @@ done
 printf "FN:%s\r\n" "$NOMBRE_COMPLETO" >> contacto.vcf
 printf "N:%s\r\n" "$NOMBRE" >> contacto.vcf
 printf "TITLE:%s\r\n" "$TITULO" >> contacto.vcf
-printf "TEL;TYPE=WORK,VOICE:%s\r\n" "$TELEFONO" >> contacto.vcf
+TELEFONO_CLEAN=$(echo "$TELEFONO" | tr -d '[:space:]')
+printf "TEL;TYPE=WORK,VOICE:%s\r\n" "$TELEFONO_CLEAN" >> contacto.vcf
 printf "EMAIL:%s\r\n" "$EMAIL" >> contacto.vcf
 printf "URL:%s\r\n" "$URL" >> contacto.vcf
 
@@ -44,3 +45,32 @@ printf "URL:%s\r\n" "$URL" >> contacto.vcf
 printf "END:VCARD\r\n" >> contacto.vcf
 
 echo "El archivo contacto.vcf ha sido generado exitosamente."
+
+# --- Generación de index.html desde la plantilla ---
+
+# 6. Leer datos del JSON (reutilizando los ya leídos si es posible)
+TELEFONO_RAW=$(echo "$TELEFONO" | tr -d '[:space:]')
+TELEFONO_FORMATTED="$TELEFONO"
+URL_DISPLAY=$(echo "$URL" | sed 's#https\?://##')
+
+# 7. Usar awk para reemplazar los placeholders en la plantilla y crear index.html
+awk \
+    -v nc="$NOMBRE_COMPLETO" \
+    -v t="$TITULO" \
+    -v tr="$TELEFONO_RAW" \
+    -v tf="$TELEFONO_FORMATTED" \
+    -v e="$EMAIL" \
+    -v u="$URL" \
+    -v ud="$URL_DISPLAY" \
+    '{ 
+        gsub("{{NOMBRE_COMPLETO}}", nc); 
+        gsub("{{TITULO}}", t); 
+        gsub("{{TELEFONO_RAW}}", tr); 
+        gsub("{{TELEFONO_FORMATTED}}", tf); 
+        gsub("{{EMAIL}}", e); 
+        gsub("{{URL}}", u); 
+        gsub("{{URL_DISPLAY}}", ud); 
+        print 
+    }' template.html > index.html
+
+echo "El archivo index.html ha sido generado exitosamente." 
