@@ -42,6 +42,7 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
+            animation: card-enter 0.7s ease-out;
         }
 
         .header-accent {
@@ -57,6 +58,7 @@
             border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             min-width: 250px;
+            animation: content-enter 0.7s ease-out 0.4s backwards;
         }
 
         .images-container {
@@ -102,6 +104,7 @@
             font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 5px;
+            animation: content-enter 0.7s ease-out 0.6s backwards;
         }
 
         h2 {
@@ -111,11 +114,13 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 25px;
+            animation: content-enter 0.7s ease-out 0.7s backwards;
         }
 
         .contact-links {
             text-align: left;
             margin-bottom: 30px;
+            animation: content-enter 0.7s ease-out 0.8s backwards;
         }
 
         .contact-item {
@@ -151,6 +156,7 @@
             font-weight: 700;
             transition: background 0.3s ease;
             margin-top: 10px;
+            animation: content-enter 0.7s ease-out 0.9s backwards;
         }
 
         .btn-vcard:hover {
@@ -164,6 +170,27 @@
             background: var(--verdecillo);
             border-radius: 4px;
             display: inline-block;
+        }
+        @keyframes card-enter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes content-enter {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -180,23 +207,23 @@
         </div>
 
         <div class="info-section">
-            <h1 id="contact-name">Mtro. Miguel Zimi Chávez Loeza</h1>
-            <h2 id="contact-title">Director General</h2>
+            <h1 id="contact-name"></h1>
+            <h2 id="contact-title"></h2>
 
             <div class="contact-links">
                 <a href="tel:+521234567890" id="contact-phone" class="contact-item">
                     <span class="icon"></span>
-                    <span>+52 123 456 7890</span>
+                    <span></span>
                 </a>
 
                 <a href="mailto:correo@arloga.com" id="contact-email" class="contact-item">
                     <span class="icon"></span>
-                    <span>correo@arloga.com</span>
+                    <span></span>
                 </a>
 
                 <a href="https://arloga.com" target="_blank" id="contact-website" class="contact-item">
                     <span class="icon"></span>
-                    <span>www.arloga.com</span>
+                    <span></span>
                 </a>
             </div>
 
@@ -206,7 +233,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vcard.js@2.1.0/dist/vcard.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 </body>
 </html>

@@ -1,8 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('contacto.vcf')
+
+    function parseVCard(vcardData) {
+        const card = {};
+        const lines = vcardData.split(/\r\n|\n/);
+
+        lines.forEach(line => {
+            const parts = line.split(':');
+            if (parts.length < 2) return;
+
+            const key = parts[0].split(';')[0];
+            const value = parts.slice(1).join(':');
+
+            switch (key) {
+                case 'FN':
+                    card.fn = value;
+                    break;
+                case 'TITLE':
+                    card.title = value;
+                    break;
+                case 'TEL':
+                    card.tel = value;
+                    break;
+                case 'EMAIL':
+                    card.email = value;
+                    break;
+                case 'URL':
+                    card.url = value;
+                    break;
+            }
+        });
+        return card;
+    }
+
+    fetch('contacto.vcf?v=' + new Date().getTime())
         .then(response => response.text())
         .then(vcardData => {
-            const card = vCard.parse(vcardData);
+            const card = parseVCard(vcardData);
 
             if (card) {
                 const nameElement = document.getElementById('contact-name');
@@ -17,25 +50,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const phoneLink = document.getElementById('contact-phone');
                 if (phoneLink && card.tel) {
-                    const telValue = Array.isArray(card.tel) ? card.tel[0].value : card.tel.value;
-                    phoneLink.href = 'tel:' + telValue.replace(/\D/g, '');
-                    phoneLink.querySelector('span').textContent = telValue;
+                    phoneLink.href = 'tel:' + card.tel.replace(/\D/g, '');
+                    phoneLink.querySelector('span:last-child').textContent = card.tel;
                 }
 
                 const emailLink = document.getElementById('contact-email');
                 if (emailLink && card.email) {
-                    const emailValue = Array.isArray(card.email) ? card.email[0].value : card.email.value;
-                    emailLink.href = 'mailto:' + emailValue;
-                    emailLink.querySelector('span').textContent = emailValue;
+                    emailLink.href = 'mailto:' + card.email;
+                    emailLink.querySelector('span:last-child').textContent = card.email;
                 }
 
                 const websiteLink = document.getElementById('contact-website');
                 if (websiteLink && card.url) {
-                    const urlValue = Array.isArray(card.url) ? card.url[0].value : card.url.value;
-                    websiteLink.href = urlValue;
-                    websiteLink.querySelector('span').textContent = urlValue.replace(/^https?:\/\//, '');
+                    websiteLink.href = card.url;
+                    websiteLink.querySelector('span:last-child').textContent = card.url.replace(/^https?:\/\//, '');
                 }
             }
         })
-        .catch(error => console.error('Error fetching or parsing vCard:', error));
+        .catch(error => console.error('Error fetching vCard:', error));
 });
