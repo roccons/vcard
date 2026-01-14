@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta Digital - Mtro. Miguel Zimi Chávez Loeza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan-500: #3ca69b;
+            --gray-logo: #696F75;
+            --blue-logo: #225473;
+            --gray-light: #D4E5ED;
+            --verdecillo: #8abf88;
+            --text: #0f172a;
+            --text-weak: #334155;
+            --border: #e5e7eb;
+            --bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--gray-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--bg);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header-accent {
+            background: linear-gradient(135deg, var(--blue-logo), var(--cyan-500));
+            height: 80px;
+        }
+
+        .logo-container {
+            margin-top: -50px;
+            background: white;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo-placeholder {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .info-section {
+            padding: 30px 20px;
+        }
+
+        h1 {
+            color: var(--blue-logo);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: var(--cyan-500);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .contact-links {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-weak);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--cyan-500);
+            background-color: #f0fdfa;
+            color: var(--blue-logo);
+        }
+
+        .contact-item span {
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .btn-vcard {
+            display: block;
+            background-color: var(--blue-logo);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-vcard:hover {
+            background-color: var(--cyan-500);
+        }
+
+        /* Iconos simples con CSS para no depender de librerías externas */
+        .icon {
+            width: 20px;
+            height: 20px;
+            background: var(--verdecillo);
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header-accent"></div>
+
+        <div class="logo-container">
+            <img src="logo.webp" alt="Arloga Logo" class="logo-placeholder">
+        </div>
+
+        <div class="info-section">
+            <h1>Mtro. Miguel Zimi Chávez Loeza</h1>
+            <h2>Director General</h2>
+
+            <div class="contact-links">
+                <a href="tel:+521234567890" class="contact-item">
+                    <span class="icon"></span>
+                    <span>+52 123 456 7890</span>
+                </a>
+
+                <a href="mailto:correo@arloga.com" class="contact-item">
+                    <span class="icon"></span>
+                    <span>correo@arloga.com</span>
+                </a>
+
+                <a href="https://arloga.com" target="_blank" class="contact-item">
+                    <span class="icon"></span>
+                    <span>www.arloga.com</span>
+                </a>
+            </div>
+
+            <a href="contacto.vcf" class="btn-vcard">
+                Guardar Contacto
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
