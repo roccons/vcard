@@ -28,6 +28,8 @@ Este script se encargará de:
 -   Crear el archivo `contacto.vcf` con la información y la foto codificada.
 -   Generar el archivo `index.html` con todos los datos actualizados, incluyendo los necesarios para la vista previa en redes sociales.
 
+Se recomienda usar el archivo robots.txt en la raíz del sitio web en el que se quiera publicar la tarjeta de presentación digital para evitar que sus archivos sean indexados por motores de búsqueda.
+
 ### Requisitos
 
 -   **jq:** Asegúrate de tener `jq` instalado, ya que el script lo necesita para leer el archivo `datos.json`. Puedes instalarlo en la mayoría de los sistemas con `sudo apt-get install jq` o `brew install jq`.

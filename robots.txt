@@ -1,0 +1,4 @@
+# Este archivo debe colocarse en el directorio raíz de tu sitio web.
+# Cambia '/vcard/' por el nombre del directorio donde copies el proyecto.
+User-agent: *
+Disallow: /vcard/
